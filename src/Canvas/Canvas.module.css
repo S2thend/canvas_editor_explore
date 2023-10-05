@@ -1,0 +1,17 @@
+.container{
+    position: relative;
+    padding: 100px;
+}
+
+.canvas{
+    position: absolute;
+    z-index: 1;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.textarea{
+    position: absolute;
+    opacity: 0;
+}
