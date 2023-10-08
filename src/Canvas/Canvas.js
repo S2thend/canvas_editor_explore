@@ -24,12 +24,17 @@ function CanvasComponent() {
 
     ctx.font = "50px serif";
     const textMetrics = ctx.measureText(e.target.value); // 获取文本的测量信息
-    const textWidth = textMetrics.width; // 获取文本的实际宽度
+    const textWidth = Math.ceil(textMetrics.actualBoundingBoxLeft+textMetrics.actualBoundingBoxRight); // 获取文本的实际宽度
     const metrics = ctx.measureText(e.target.value); // 选择一个高度最大的字母以获得文本的高度
     const textHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
     console.log(`文本 "${e.target.value}" 的实际宽度为 ${textWidth} 像素，高度${textHeight}`);
-    
-    ctx.fillText(e.target.value, cursor.current, 50);
+   
+    const offset_left = textMetrics.actualBoundingBoxLeft || 0;
+
+    ctx.fillText(e.target.value, cursor.current+offset_left, 50);
+
+    // ctx.fillStyle = 'blue';
+    // ctx.strokeRect(cursor.current, 0, textWidth, 50);
 
     elementWidth.current.push(textWidth);
 
